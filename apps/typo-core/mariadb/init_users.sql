@@ -18,4 +18,4 @@ GRANT SELECT, INSERT, UPDATE, DELETE ON palantir.* TO `tirith`@`localhost`;
 -- create an user for human db access from everywhere. 
 -- the credentials come from the environment file in the root (via typo-core docker-compose -> mariadb dockerfile)
 CREATE USER 'ADMIN_USER_PLACEHOLDER'@'%' IDENTIFIED BY 'ADMIN_PASSWORD_PLACEHOLDER';
-GRANT ALL ON *.* TO `tirith`@`%`;
+GRANT ALL PRIVILEGES ON *.* TO 'ADMIN_USER_PLACEHOLDER'@`%`;
