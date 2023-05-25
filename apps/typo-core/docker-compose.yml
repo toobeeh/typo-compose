@@ -22,6 +22,8 @@ services:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
     volumes:
      - typo-mariadb:/var/lib/mysql
+    networks:
+      - proxy
     ports:
      - 3306:3306
 
