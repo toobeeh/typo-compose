@@ -14,8 +14,8 @@ services:
     build:
       context: ./mariadb
       args:
-        - DB_ADMIN_USERNAME: "${DB_ADMIN_USERNAME}"
-        - DB_ADMIN_PASSWORD: "${DB_ADMIN_PASSWORD}"
+        DB_ADMIN_USERNAME: "${DB_ADMIN_USERNAME}"
+        DB_ADMIN_PASSWORD: "${DB_ADMIN_PASSWORD}"
     restart: always
     env_file:
       - ../../config/typo-core.env
