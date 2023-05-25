@@ -18,6 +18,7 @@ Services that depend on each other are provided in the same folder within a sing
 ## Configuration
 
 All critical information that is used for docker image builds or in docker-compose is stored in the .env file next to the docker-compose.
+Additional configuration may be needed in some container's yml configs. 
 
 ### Database
 
