@@ -4,8 +4,6 @@ services:
   typo-agent:
     container_name: typo-agent
     image: "ghcr.io/toobeeh/typo-agent-scraper/typo-agent-scraper-image:latest"
-    ports:
-      - 3000:3000
     labels:
       - "traefik.enable=true"
       - "traefik.docker.network=proxy"
