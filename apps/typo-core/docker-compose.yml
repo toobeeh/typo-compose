@@ -1,0 +1,42 @@
+version: '3'
+
+volumes:
+  mariadb:
+    driver: local
+
+networks:
+    proxy:
+      external: true
+
+services:
+  mariadb:
+    container_name: mariadb
+    build:
+      context: ./mariadb
+      args:
+        - DB_ADMIN_USERNAME=${DB_ADMIN_USERNAME}
+        - DB_ADMIN_PASSWORD=${DB_ADMIN_PASSWORD}
+    restart: always
+    env_file:
+      - .env
+    environment:
+    volumes:
+     - mariadb:/var/lib/mysql
+    ports:
+     - 3306:3307
+
+  # phpmyadmin:
+  #   container_name: phpmyadmin
+  #   image: phpmyadmin
+  #   restart: always
+  #   environment:
+  #     - PMA_HOST=mariadb
+  #     - PMA_PORT=3306
+  #   networks:
+  #     - proxy
+  #   labels:
+  #     - "traefik.enable=true"
+  #     - "traefik.docker.network=proxy"
+  #     - "traefik.http.routers.phpmyadmin.entrypoints=websecure"
+  #     - "traefik.http.routers.phpmyadmin.rule=Host(`phpmyadmin.typo.rip`)"
+  #     - "traefik.http.services.phpmyadmin.loadbalancer.server.port=80"
