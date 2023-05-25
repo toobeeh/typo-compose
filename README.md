@@ -12,4 +12,4 @@ This is the docker-setup for the VPS that is - or will be, in near future - runn
 
 ## Environment variables
 
-All critical information that is used for docker image builds or in docker-compose is stored in the .env file of the corresponding application's folder.
+All critical information that is used for docker image builds or in docker-compose is stored in the application's .env file in the /config folder.

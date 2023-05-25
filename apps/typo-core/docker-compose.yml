@@ -18,8 +18,7 @@ services:
         - DB_ADMIN_PASSWORD=${DB_ADMIN_PASSWORD}
     restart: always
     env_file:
-      - .env
-    environment:
+      - ../../config/typo-core.env
     volumes:
      - mariadb:/var/lib/mysql
     ports:
