@@ -11,16 +11,17 @@ networks:
 services:
   mariadb:
     container_name: mariadb
+    image: typo-mariadb
     build:
       context: ./mariadb
       args:
-        DB_ADMIN_USERNAME: "${DB_ADMIN_USERNAME}"
-        DB_ADMIN_PASSWORD: "${DB_ADMIN_PASSWORD}"
+        DB_ADMIN_USERNAME: ${DB_ADMIN_USERNAME}
+        DB_ADMIN_PASSWORD: ${DB_ADMIN_PASSWORD}
     restart: always
     env_file:
       - ../../config/typo-core.env
     volumes:
-     - mariadb:/var/lib/mysql
+     - typo-mariadb:/var/lib/mysql
     ports:
      - 3306:3307
 
