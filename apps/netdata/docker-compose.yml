@@ -14,6 +14,7 @@ services:
       - "traefik.http.routers.netdata.entrypoints=websecure"
       - "traefik.http.routers.netdata.rule=Host(`${DOMAIN_NAME}`)"
       - "traefik.http.services.netdata.loadbalancer.server.port=19999"
+      - "traefik.http.routers.netdata.middlewares=user-auth"
     volumes:
       - netdataconfig:/etc/netdata
       - netdatalib:/var/lib/netdata
