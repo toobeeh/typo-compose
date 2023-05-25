@@ -2,15 +2,16 @@ version: "3.0"
 
 services:
   typo-agent:
+    container_name: typo-agent
     image: "ghcr.io/toobeeh/typo-agent-scraper/typo-agent-scraper-image:latest"
     ports:
-      - 3500:3000
+      - 3000:3000
     labels:
       - "traefik.enable=true"
       - "traefik.docker.network=proxy"
       - "traefik.http.routers.typo-agent.entrypoints=websecure"
       - "traefik.http.routers.typo-agent.rule=Host(`agent.typo.rip`)"
-      - "traefik.http.services.typo-agent.loadbalancer.server.port=3500"
+      - "traefik.http.services.typo-agent.loadbalancer.server.port=3000"
     networks:
       - proxy
 
