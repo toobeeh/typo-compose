@@ -4,12 +4,21 @@ This is the docker-setup for the VPS that is - or will be, in near future - runn
 
 ## Structure
 
-- core
-  The core configuration of portainer to manage containers, and traefik to handly traffic to containers via a reverse proxy.
-- apps
-  The configuration for all services.  
-  Services that depend on each other are provided in the same folder within a single docker-compose file.
+### core
+The core configuration of portainer to manage containers, and traefik to handly traffic to containers via a reverse proxy.
+### apps
+The configuration for all services.  
+Services that depend on each other are provided in the same folder within a single docker-compose file.
 
-## Environment variables
+---
 
-All critical information that is used for docker image builds or in docker-compose is stored in the application's .env file in the /config folder.
+## Configuration
+
+All critical information that is used for docker image builds or in docker-compose is stored in the .env file next to the docker-compose.
+
+### Database 
+**Location:** `apps/typo-core/.env`  
+**Variables:**
+- DB_ADMIN_USERNAME - admin account username
+- DB_ADMIN_PASSWORD - admin account password
+- MYSQL_ROOT_PASSWORD - root user password
