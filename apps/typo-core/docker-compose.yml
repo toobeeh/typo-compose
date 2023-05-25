@@ -40,5 +40,5 @@ services:
       - "traefik.enable=true"
       - "traefik.docker.network=proxy"
       - "traefik.http.routers.phpmyadmin.entrypoints=websecure"
-      - "traefik.http.routers.phpmyadmin.rule=Host(`phpmyadmin.typo.rip`)"
+      - "traefik.http.routers.phpmyadmin.rule=Host(`${DOMAIN_NAME}`)"
       - "traefik.http.services.phpmyadmin.loadbalancer.server.port=80"

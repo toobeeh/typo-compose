@@ -3,8 +3,6 @@ services:
   netdata:
     image: netdata/netdata
     container_name: netdata
-    ports:
-      - 19999:19999
     restart: unless-stopped
     cap_add:
       - SYS_PTRACE
@@ -14,7 +12,7 @@ services:
       - "traefik.enable=true"
       - "traefik.docker.network=proxy"
       - "traefik.http.routers.netdata.entrypoints=websecure"
-      - "traefik.http.routers.netdata.rule=Host(`netdata.typo.rip`)"
+      - "traefik.http.routers.netdata.rule=Host(${DOMAIN_NAME}`)"
       - "traefik.http.services.netdata.loadbalancer.server.port=19999"
       - "traefik.http.routers.netdata.middlewares=user-auth@file"
     volumes:
