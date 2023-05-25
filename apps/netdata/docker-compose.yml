@@ -3,6 +3,7 @@ services:
   netdata:
     image: netdata/netdata
     container_name: netdata
+    hostname: ${DOMAIN_NAME}
     restart: unless-stopped
     cap_add:
       - SYS_PTRACE
@@ -12,7 +13,7 @@ services:
       - "traefik.enable=true"
       - "traefik.docker.network=proxy"
       - "traefik.http.routers.netdata.entrypoints=websecure"
-      - "traefik.http.routers.netdata.rule=Host(${DOMAIN_NAME}`)"
+      - "traefik.http.routers.netdata.rule=Host(`${DOMAIN_NAME}`)"
       - "traefik.http.services.netdata.loadbalancer.server.port=19999"
       - "traefik.http.routers.netdata.middlewares=user-auth@file"
     volumes:
