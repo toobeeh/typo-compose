@@ -40,5 +40,35 @@ services:
       - "traefik.enable=true"
       - "traefik.docker.network=proxy"
       - "traefik.http.routers.phpmyadmin.entrypoints=websecure"
-      - "traefik.http.routers.phpmyadmin.rule=Host(`${DOMAIN_NAME}`)"
+      - "traefik.http.routers.phpmyadmin.rule=Host(`${PMA_DOMAIN_NAME}`)"
       - "traefik.http.services.phpmyadmin.loadbalancer.server.port=80"
+
+  tirith-api:
+    container_name: tirith-api
+    image: "ghcr.io/toobeeh/tirith/tirith-api:latest"
+    restart: always
+    environment:
+      - DB_DOMAIN_NAME=mariadb
+    networks:
+      - proxy
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=proxy"
+      - "traefik.http.routers.tirith-api.entrypoints=websecure"
+      - "traefik.http.routers.tirith-api.rule=Host(`${TIRITH_API_DOMAIN_NAME}`)"
+      - "traefik.http.services.tirith-api.loadbalancer.server.port=3000"
+
+  tirith-frontend:
+    container_name: tirith-frontend
+    image: "ghcr.io/toobeeh/tirith/tirith-frontend:latest"
+    restart: always
+    environment:
+      - API_DOMAIN_NAME=${TIRITH_API_DOMAIN_NAME}
+    networks:
+      - proxy
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=proxy"
+      - "traefik.http.routers.tirith-frontend.entrypoints=websecure"
+      - "traefik.http.routers.tirith-frontend.rule=Host(`${TIRITH_FRONTEND_DOMAIN_NAME}`)"
+      - "traefik.http.services.tirith-frontend.loadbalancer.server.port=80"
