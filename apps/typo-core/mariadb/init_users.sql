@@ -12,7 +12,7 @@ GRANT SELECT, INSERT, UPDATE, DELETE ON palantir.* TO `palantir`@`81.217.223.62`
 CREATE USER 'tirith'@'81.217.223.62' IDENTIFIED BY '';
 GRANT SELECT, INSERT, UPDATE, DELETE ON palantir.* TO `tirith`@`81.217.223.62`;
 
-CREATE USER 'tirith'@'localhost' IDENTIFIED BY '';
+CREATE USER 'tirith'@'172.20.0.%' IDENTIFIED BY '';
 GRANT SELECT, INSERT, UPDATE, DELETE ON palantir.* TO `tirith`@`localhost`;
 
 -- create an user for human db access from everywhere. 
@@ -21,5 +21,5 @@ CREATE USER 'ADMIN_USER_PLACEHOLDER'@'%' IDENTIFIED BY 'ADMIN_PASSWORD_PLACEHOLD
 GRANT ALL PRIVILEGES ON *.* TO 'ADMIN_USER_PLACEHOLDER'@`%`;
 
 -- limit remote access
-UPDATE user SET Host='localhost' WHERE User='root';
+UPDATE user SET Host='172.20.0.%' WHERE User='root';
 FLUSH PRIVILEGES;
