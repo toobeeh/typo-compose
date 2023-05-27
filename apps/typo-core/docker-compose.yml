@@ -63,7 +63,7 @@ services:
     image: "ghcr.io/toobeeh/tirith/tirith-frontend:latest"
     restart: always
     environment:
-      - API_DOMAIN_NAME=${TIRITH_API_DOMAIN_NAME}
+      - API_DOMAIN_NAME=https://${TIRITH_API_DOMAIN_NAME}
     networks:
       - proxy
     labels:
