@@ -1,0 +1,26 @@
+version: "3.0"
+
+services:
+  static-data-sync:
+    container_name: static-data-sync
+    image: "ghcr.io/toobeeh/git-sync/git-sync:latest"
+    ports:
+      - 5000:5000
+    environment:
+      - REPO_URL=${GH_WEBHOOK_SECRET_PLAIN}
+      - WEBHOOK_SECRET=${GH_WEBHOOK_SECRET_PLAIN}
+    restart: always
+    volumes:
+      - ${DATA_MOUNT_PATH}/typo-static-data:/app/repository
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=proxy"
+      - "traefik.http.routers.typo-agent.entrypoints=websecure"
+      - "traefik.http.routers.typo-agent.rule=Host(`${GH_WEBHOOK_SYNC_DOMAIN_NAME}`)"
+      - "traefik.http.services.typo-agent.loadbalancer.server.port=5000"
+    networks:
+      - proxy
+
+networks:
+  proxy:
+    external: true
