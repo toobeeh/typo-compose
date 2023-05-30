@@ -12,6 +12,7 @@ services:
       - "traefik.http.services.typo-agent.loadbalancer.server.port=3000"
     networks:
       - proxy
+    restart: unless-stopped
 
 networks:
   proxy:
