@@ -38,6 +38,7 @@ services:
       - proxy
 
   caddy-ui:
+    container_name: caddy-ui
     image: qmcgaw/caddy-ui
     environment:
       - CADDY_API_ENDPOINT=http://caddy-server:2019
