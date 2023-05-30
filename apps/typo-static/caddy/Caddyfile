@@ -1,6 +1,6 @@
 :80 {
-	root /sprites /var/www/html/typo-static-data/sprites
-    root /scenes /var/www/html/typo-static-data/scenes
+	root /scenes/* /var/www/html/typo-static-data
+    root /sprites/* /var/www/html/typo-static-data
 	php_fastcgi php-fpm:9000
 	file_server
 }
