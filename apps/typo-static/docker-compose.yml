@@ -43,7 +43,7 @@ services:
       - "traefik.enable=true"
       - "traefik.docker.network=proxy"
       - "traefik.http.routers.caddy-ui.entrypoints=websecure"
-      - "traefik.http.routers.caddy-ui.rule=Host(`${CADDY_SERVER_DOMAIN_NAME}`)"
+      - "traefik.http.routers.caddy-ui.rule=Host(`${CADDY_UI_DOMAIN_NAME}`)"
       - "traefik.http.services.caddy-ui.loadbalancer.server.port=8000"
       - "traefik.http.routers.caddy-ui.middlewares=user-auth"
     networks:
