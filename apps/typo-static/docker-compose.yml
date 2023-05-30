@@ -5,7 +5,7 @@ services:
     container_name: static-data-sync
     image: "ghcr.io/toobeeh/git-sync/git-sync:latest"
     environment:
-      - REPO_URL=${GH_WEBHOOK_SECRET_PLAIN}
+      - REPO_URL=${DATA_REPO_URL}
       - WEBHOOK_SECRET=${GH_WEBHOOK_SECRET_PLAIN}
     restart: always
     volumes:
