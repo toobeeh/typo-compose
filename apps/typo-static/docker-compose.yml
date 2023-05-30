@@ -13,9 +13,39 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.docker.network=proxy"
-      - "traefik.http.routers.typo-agent.entrypoints=websecure"
-      - "traefik.http.routers.typo-agent.rule=Host(`${GH_WEBHOOK_SYNC_DOMAIN_NAME}`)"
-      - "traefik.http.services.typo-agent.loadbalancer.server.port=5000"
+      - "traefik.http.routers.static-data-sync.entrypoints=websecure"
+      - "traefik.http.routers.static-data-sync.rule=Host(`${GH_WEBHOOK_SYNC_DOMAIN_NAME}`)"
+      - "traefik.http.services.static-data-sync.loadbalancer.server.port=5000"
+    networks:
+      - proxy
+
+  caddy-server:
+    container_name: caddy-server
+    image: skiychan/caddy-php:8.1
+    restart: always
+    volumes:
+      - ${DATA_MOUNT_PATH}:/var/www/html
+      - ./caddy:/etc/caddy
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=proxy"
+      - "traefik.http.routers.caddy-server.entrypoints=websecure"
+      - "traefik.http.routers.caddy-server.rule=Host(`${CADDY_SERVER_DOMAIN_NAME}`)"
+      - "traefik.http.services.caddy-server.loadbalancer.server.port=80"
+    networks:
+      - proxy
+
+  caddy-ui:
+    image: qmcgaw/caddy-ui
+    environment:
+      - CADDY_API_ENDPOINT=http://caddy-server:2019
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=proxy"
+      - "traefik.http.routers.caddy-ui.entrypoints=websecure"
+      - "traefik.http.routers.caddy-ui.rule=Host(`${CADDY_SERVER_DOMAIN_NAME}`)"
+      - "traefik.http.services.caddy-ui.loadbalancer.server.port=8000"
+      - "traefik.http.routers.caddy-ui.middlewares=user-auth"
     networks:
       - proxy
 
