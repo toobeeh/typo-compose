@@ -1,4 +1,6 @@
-localhost
-
-root * ./
-file_server
+:80 {
+	redir /sprites /var/www/html/typo-static-data/sprites
+    redir /scenes /var/www/html/typo-static-data/scenes
+	php_fastcgi php-fpm:9000
+	file_server
+}

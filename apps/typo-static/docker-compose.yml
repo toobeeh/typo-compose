@@ -23,6 +23,8 @@ services:
     container_name: caddy-server
     image: skiychan/caddy-php:8.1
     restart: always
+    expose:
+      - 2019:2019/tcp
     volumes:
       - ${DATA_MOUNT_PATH}:/var/www/html
       - ./caddy:/etc/caddy
