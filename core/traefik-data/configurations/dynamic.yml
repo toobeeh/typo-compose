@@ -1,6 +1,11 @@
 # Dynamic configuration
 http:
   middlewares:
+    sslheader:
+      headers:
+        customrequestheaders:
+          X-Forwarded-Proto: "https"
+
     secureHeaders:
       headers:
         sslRedirect: true
