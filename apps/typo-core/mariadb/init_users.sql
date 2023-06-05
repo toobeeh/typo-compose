@@ -3,17 +3,23 @@
 CREATE USER 'ithil'@'81.217.223.62' IDENTIFIED BY '';
 GRANT SELECT, INSERT, UPDATE, DELETE ON palantir.* TO `ithil`@`81.217.223.62`;
 
+CREATE USER 'ithil'@'172.20.0.%' IDENTIFIED BY '';
+GRANT SELECT, INSERT, UPDATE, DELETE ON palantir.* TO `ithil`@`172.20.0.%`;
+
 CREATE USER 'orthanc'@'81.217.223.62' IDENTIFIED BY '';
 GRANT SELECT, INSERT, UPDATE, DELETE ON palantir.* TO `orthanc`@`81.217.223.62`;
 
 CREATE USER 'palantir'@'81.217.223.62' IDENTIFIED BY '';
 GRANT SELECT, INSERT, UPDATE, DELETE ON palantir.* TO `palantir`@`81.217.223.62`;
 
+CREATE USER 'palantir'@'172.20.0.%' IDENTIFIED BY '';
+GRANT SELECT, INSERT, UPDATE, DELETE ON palantir.* TO `palantir`@`172.20.0.%`;
+
 CREATE USER 'tirith'@'81.217.223.62' IDENTIFIED BY '';
 GRANT SELECT, INSERT, UPDATE, DELETE ON palantir.* TO `tirith`@`81.217.223.62`;
 
 CREATE USER 'tirith'@'172.20.0.%' IDENTIFIED BY '';
-GRANT SELECT, INSERT, UPDATE, DELETE ON palantir.* TO `tirith`@`localhost`;
+GRANT SELECT, INSERT, UPDATE, DELETE ON palantir.* TO `tirith`@`172.20.0.%`;
 
 -- create an user for human db access from everywhere. 
 -- the credentials come from the environment file in the root (via typo-core docker-compose -> mariadb dockerfile)
