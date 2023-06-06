@@ -80,6 +80,8 @@ services:
     restart: always
     environment:
       - DB_DOMAIN_NAME=mariadb
+      - S3_KEY=${ITHIL_S3_KEY}
+      - S3_SECRET=${ITHIL_S3_SECRET}
     networks:
       - proxy
     labels:
