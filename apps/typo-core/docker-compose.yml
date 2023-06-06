@@ -89,3 +89,43 @@ services:
       - "traefik.http.routers.ithil-smain.entrypoints=websecure"
       - "traefik.http.routers.ithil-smain.rule=Host(`${ITHIL_SMAIN_DOMAIN_NAME}`)"
       - "traefik.http.services.ithil-smain.loadbalancer.server.port=4000"
+
+      - "traefik.http.routers.ithil-sdrop.entrypoints=websecure"
+      - "traefik.http.routers.ithil-sdrop.rule=Host(`${ITHIL_SDROP_DOMAIN_NAME}`)"
+      - "traefik.http.services.ithil-sdrop.loadbalancer.server.port=4001"
+
+      - "traefik.http.routers.ithil-sworker1.entrypoints=websecure"
+      - "traefik.http.routers.ithil-sworker1.rule=Host(`${ITHIL_SWORKER1_DOMAIN_NAME}`)"
+      - "traefik.http.services.ithil-sworker1.loadbalancer.server.port=4002"
+
+      - "traefik.http.routers.ithil-sworker2.entrypoints=websecure"
+      - "traefik.http.routers.ithil-sworker2.rule=Host(`${ITHIL_SWORKER2_DOMAIN_NAME}`)"
+      - "traefik.http.services.ithil-sworker2.loadbalancer.server.port=4003"
+
+      - "traefik.http.routers.ithil-sworker3.entrypoints=websecure"
+      - "traefik.http.routers.ithil-sworker3.rule=Host(`${ITHIL_SWORKER3_DOMAIN_NAME}`)"
+      - "traefik.http.services.ithil-sworker3.loadbalancer.server.port=4004"
+
+      - "traefik.http.routers.ithil-sworker4.entrypoints=websecure"
+      - "traefik.http.routers.ithil-sworker4.rule=Host(`${ITHIL_SWORKER4_DOMAIN_NAME}`)"
+      - "traefik.http.services.ithil-sworker4.loadbalancer.server.port=4005"
+
+      - "traefik.http.routers.ithil-sworker5.entrypoints=websecure"
+      - "traefik.http.routers.ithil-sworker5.rule=Host(`${ITHIL_SWORKER5_DOMAIN_NAME}`)"
+      - "traefik.http.services.ithil-sworker5.loadbalancer.server.port=4006"
+
+      - "traefik.http.routers.ithil-sworker6.entrypoints=websecure"
+      - "traefik.http.routers.ithil-sworker6.rule=Host(`${ITHIL_SWORKER6_DOMAIN_NAME}`)"
+      - "traefik.http.services.ithil-sworker6.loadbalancer.server.port=4007"
+
+      - "traefik.http.routers.ithil-sworker7.entrypoints=websecure"
+      - "traefik.http.routers.ithil-sworker7.rule=Host(`${ITHIL_SWORKER7_DOMAIN_NAME}`)"
+      - "traefik.http.services.ithil-sworker7.loadbalancer.server.port=4008"
+
+      - "traefik.http.routers.ithil-sworker8.entrypoints=websecure"
+      - "traefik.http.routers.ithil-sworker8.rule=Host(`${ITHIL_SWORKER8_DOMAIN_NAME}`)"
+      - "traefik.http.services.ithil-sworker8.loadbalancer.server.port=4009"
+
+      - "traefik.http.routers.ithil-sworker9.entrypoints=websecure"
+      - "traefik.http.routers.ithil-sworker9.rule=Host(`${ITHIL_SWORKER9_DOMAIN_NAME}`)"
+      - "traefik.http.services.ithil-sworker9.loadbalancer.server.port=4010"
