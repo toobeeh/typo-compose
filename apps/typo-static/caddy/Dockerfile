@@ -1,10 +1,8 @@
 # Use the base image
 FROM skiychan/caddy-php:8.1
 
-RUN apk update && apk upgrade \
-    && apk add --no-cache imagemagick imagemagick-dev \
-    && pecl install imagick \
-    && docker-php-ext-enable imagick
+RUN curl -sSL https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions -o - | sh -s \
+    gd imagick
 
 # Expose the port for Caddy
 EXPOSE 80
