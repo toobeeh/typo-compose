@@ -12,6 +12,8 @@ services:
       - yacht:/config
       - /var/run/docker.sock:/var/run/docker.sock
     image: selfhostedpro/yacht
+    networks:
+      - proxy
     labels:
       - "traefik.enable=true"
       - "traefik.docker.network=proxy"
