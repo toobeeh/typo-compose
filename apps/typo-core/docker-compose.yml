@@ -51,6 +51,9 @@ services:
     restart: always
     environment:
       - DB_DOMAIN_NAME=mariadb
+      - DISCORD_OAUTH_CLIENT_ID=${DISCORD_OAUTH_CLIENT_ID}
+      - DISCORD_OAUTH_CLIENT_SECRET=${DISCORD_OAUTH_CLIENT_SECRET}
+      - DISCORD_OAUTH_REDIRECT=${DISCORD_OAUTH_REDIRECT}
     networks:
       - proxy
     labels:
