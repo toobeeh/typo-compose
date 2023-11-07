@@ -1,6 +1,7 @@
 :80 {
 	root /scenes/* /var/www/html/typo-static-data
     root /sprites/* /var/www/html/typo-static-data
+    root /awards/* /var/www/html/typo-static-data
 	php_fastcgi localhost:9000
 	file_server
 }
