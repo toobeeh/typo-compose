@@ -1,0 +1,40 @@
+version: '3'
+
+networks:
+    proxy:
+      external: true
+
+services:
+  valmar:
+    container_name: valmar
+    image: "ghcr.io/toobeeh/valmar:latest"
+    restart: always
+    environment:
+      - DB_DOMAIN_NAME=mariadb
+    networks:
+      - proxy
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=proxy"
+      - "traefik.http.routers.valmar.entrypoints=websecure"
+      - "traefik.http.routers.valmar.rule=Host(`${VALMAR_DOMAIN_NAME}`)"
+      - "traefik.http.services.valmar.loadbalancer.server.port=8080"
+      
+  tirith-api-dev:
+    container_name: tirith-api-dev
+    image: "ghcr.io/toobeeh/tirith/tirith-api:dev"
+    restart: always
+    environment:
+      - GRPC_CHANNEL=valmar:8080
+      - DISCORD_OAUTH_CLIENT_ID=${DISCORD_OAUTH_CLIENT_ID}
+      - DISCORD_OAUTH_CLIENT_SECRET=${DISCORD_OAUTH_CLIENT_SECRET}
+      - DISCORD_OAUTH_REDIRECT=${DISCORD_OAUTH_REDIRECT}
+      - DISCORD_API_TOKEN=${PALANTIR_TOKEN}
+    networks:
+      - proxy
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=proxy"
+      - "traefik.http.routers.tirith-api-dev.entrypoints=websecure"
+      - "traefik.http.routers.tirith-api-dev.rule=Host(`${TIRITH_API_DOMAIN_NAME}`)"
+      - "traefik.http.services.tirith-api-dev.loadbalancer.server.port=3000"
