@@ -9,6 +9,8 @@ services:
   palantir:
     container_name: palantir
     image: "ghcr.io/toobeeh/palantir/palantir:latest"
+    networks:
+      - proxy
     volumes:
       - ${DATA_MOUNT_PATH}:/static_data
       - ${CACHE_MOUNT_PATH}:/cached_data
