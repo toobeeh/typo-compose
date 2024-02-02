@@ -1,0 +1,22 @@
+version: '3'
+
+networks:
+    proxy:
+      external: true
+
+services:
+
+  tirith-frontend:
+    container_name: tirith-frontend
+    image: "ghcr.io/toobeeh/tirith/tirith-frontend:latest"
+    restart: always
+    environment:
+      - API_DOMAIN_NAME=${TIRITH_API_DOMAIN_NAME}
+    networks:
+      - proxy
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=proxy"
+      - "traefik.http.routers.tirith-frontend.entrypoints=websecure"
+      - "traefik.http.routers.tirith-frontend.rule=Host(`${TIRITH_FRONTEND_DOMAIN_NAME}`)"
+      - "traefik.http.services.tirith-frontend.loadbalancer.server.port=4000"

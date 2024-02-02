@@ -1,0 +1,25 @@
+version: '3'
+
+networks:
+    proxy:
+      external: true
+
+services:
+
+  palantir:
+    container_name: palantir
+    image: "ghcr.io/toobeeh/palantir/palantir:latest"
+    volumes:
+      - ${DATA_MOUNT_PATH}:/static_data
+      - ${CACHE_MOUNT_PATH}:/cached_data
+    environment:
+      - PALANTIR_TOKEN=${PALANTIR_TOKEN}
+      - SERVANT_TOKEN=${SERVANT_TOKEN}
+      - DB_HOST=mariadb
+      - DB_USER=palantir
+      - STATIC_DATA_PATH=/static_data
+      - CACHE_DATA_PATH=/cached_data
+      - S3_ACCESS_KEY=${S3_KEY}
+      - S3_SECRET_KEY=${S3_SECRET}
+      - GITHUB_TOKEN=${GITHUB_TOKEN}
+      - DATA_REPO_URL=${DATA_REPO_URL}

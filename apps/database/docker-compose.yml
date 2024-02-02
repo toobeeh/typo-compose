@@ -1,0 +1,46 @@
+version: '3'
+
+volumes:
+  typo-mariadb:
+    driver: local
+
+networks:
+    proxy:
+      external: true
+
+services:
+  mariadb:
+    container_name: mariadb
+    image: typo-mariadb
+    build:
+      context: ./mariadb
+      args:
+        DB_ADMIN_USERNAME: ${DB_ADMIN_USERNAME}
+        DB_ADMIN_PASSWORD: ${DB_ADMIN_PASSWORD}
+    restart: always
+    command: --sql_mode=ANSI_QUOTES,STRICT_TRANS_TABLES,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION --max_connections=500
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+    volumes:
+     - typo-mariadb:/var/lib/mysql
+    networks:
+      - proxy
+    ports:
+     - 3306:3306
+
+  phpmyadmin:
+    container_name: phpmyadmin
+    image: phpmyadmin
+    restart: always
+    environment:
+      - PMA_HOST=mariadb
+      - PMA_PORT=3306
+      - UPLOAD_LIMIT=500M
+    networks:
+      - proxy
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=proxy"
+      - "traefik.http.routers.phpmyadmin.entrypoints=websecure"
+      - "traefik.http.routers.phpmyadmin.rule=Host(`${PMA_DOMAIN_NAME}`)"
+      - "traefik.http.services.phpmyadmin.loadbalancer.server.port=80"
