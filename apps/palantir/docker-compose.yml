@@ -25,3 +25,22 @@ services:
       - S3_SECRET_KEY=${S3_SECRET}
       - GITHUB_TOKEN=${GITHUB_TOKEN}
       - DATA_REPO_URL=${DATA_REPO_URL}
+
+  babypalantir:
+    container_name: babypalantir
+    image: "ghcr.io/toobeeh/palantir/palantir:latest"
+    networks:
+      - proxy
+    volumes:
+      - ${DATA_MOUNT_PATH}:/static_data
+      - ${CACHE_MOUNT_PATH}:/cached_data
+    environment:
+      - BABY_PALANTIR_TOKEN=${BABY_PALANTIR_TOKEN}
+      - DB_HOST=mariadb
+      - DB_USER=palantir
+      - STATIC_DATA_PATH=/static_data
+      - CACHE_DATA_PATH=/cached_data
+      - S3_ACCESS_KEY=${S3_KEY}
+      - S3_SECRET_KEY=${S3_SECRET}
+      - GITHUB_TOKEN=${GITHUB_TOKEN}
+      - DATA_REPO_URL=${DATA_REPO_URL}
