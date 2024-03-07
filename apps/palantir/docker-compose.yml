@@ -11,6 +11,7 @@ services:
     image: "ghcr.io/toobeeh/palantir/palantir:latest"
     networks:
       - proxy
+    restart: unless-stopped
     volumes:
       - ${DATA_MOUNT_PATH}:/static_data
       - ${CACHE_MOUNT_PATH}:/cached_data
