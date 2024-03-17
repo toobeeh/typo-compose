@@ -1,0 +1,16 @@
+version: "3.0"
+
+networks:
+    proxy:
+      external: true
+
+services:
+  palantir-commands:
+    container_name: palantir-commands
+    image: "ghcr.io/toobeeh/palantir-rebirth/palantir-commands:latest"
+    restart: unless-stopped
+    networks:
+      - proxy
+    environment:
+      - GRPC_URL=${GRPC_URL}
+      - DISCORD_TOKEN=${DISCORD_BOT_TOKEN}
